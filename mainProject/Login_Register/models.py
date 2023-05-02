@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
-ALLOWED_EMAILS = ["protonmail.com", "gmail.com", "yahoo.com", "outlook.com", "zoho.com",
+ALLOWED_EMAILS = ["protonmail.com", "gmail.com", "yahoo.com", "outlook.com", "zoho.com", "unifive.co",
                   "icloud.com", "aol.com", "mail.com", "yandex.com", "gmx.com", "fastmail.com",
                   "hushmail.com", "tutanota.com", "startmail.com", "posteo.de", "runbox.com",
                   "openmailbox.org", "vfemail.net", "disroot.org", "kolabnow.com", "privaterelay.apple.com",

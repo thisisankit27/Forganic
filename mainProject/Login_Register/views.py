@@ -39,9 +39,6 @@ def register(request):
     else:
         return render(request, 'Login_Register/Register.html')
 
-def forgotPassword(request):
-    return render(request, 'Login_Register/forgot-your-password.html')
-
 @login_required(login_url='login')
 def logout(request):
     auth.logout(request)
