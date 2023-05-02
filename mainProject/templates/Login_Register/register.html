@@ -95,14 +95,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="row">
-                                    <div class="form-group form-check col-12 col-sm-12 col-md-12 col-lg-12">
-                                        <label class="form-check-label padding-15px-left">
-                                            <input type="checkbox" class="form-check-box" value=""> &nbsp;Sign Up for
-                                            Newsletter
-                                        </label>
-                                    </div>
-                                </div> -->
                                 <h3>Login Information</h3>
                                 <div class="row">
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
@@ -110,18 +102,27 @@
                                             <label for="CustomerPassword">Password <span
                                                     class="required">*</span></label>
                                             <input id="CustomerPassword" type="password" name="customer[Password]"
-                                                placeholder="" class="" autocorrect="off" autocapitalize="off" autofocus
-                                                required>
+                                                placeholder="" class="showPasswordToggle" autocorrect="off"
+                                                autocapitalize="off" autofocus required>
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
                                             <label for="CustomerConfirmPassword">Confirm Password <span
                                                     class="required">*</span></label>
-                                            <input id="CustomerConfirmPassword" type="Password"
-                                                name="customer[ConfirmPassword]" placeholder="" class=""
-                                                autocorrect="off" autocapitalize="off" autofocus required>
+                                            <input id="CustomerConfirmPassword" type="password"
+                                                name="customer[ConfirmPassword]" placeholder=""
+                                                class="showPasswordToggle" autocorrect="off" autocapitalize="off"
+                                                autofocus required>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group form-check col-12 col-sm-12 col-md-12 col-lg-12">
+                                        <label class="form-check-label padding-15px-left">
+                                            <input type="checkbox" class="form-check-box" value=""
+                                                onclick="showPassword()"> &nbsp;Show Password
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -190,6 +191,16 @@
                 }
             })
         });
+        function showPassword() {
+            var passwordFields = document.querySelectorAll('.showPasswordToggle');
+            for (var i = 0; i < passwordFields.length; i++) {
+                if (passwordFields[i].type === "password") {
+                    passwordFields[i].type = "text";
+                } else {
+                    passwordFields[i].type = "password";
+                }
+            }
+        }
     </script>
 </body>
 
