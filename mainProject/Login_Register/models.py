@@ -2,6 +2,12 @@ from django.db import models
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
+ALLOWED_EMAILS = ["protonmail.com", "gmail.com", "yahoo.com", "outlook.com", "zoho.com",
+                  "icloud.com", "aol.com", "mail.com", "yandex.com", "gmx.com", "fastmail.com",
+                  "hushmail.com", "tutanota.com", "startmail.com", "posteo.de", "runbox.com",
+                  "openmailbox.org", "vfemail.net", "disroot.org", "kolabnow.com", "privaterelay.apple.com",
+                  "ctemplar.com", "neomailbox.com", "zimbra.com", "lycos.com", "soverin.net",
+                  "thexyz.com", "luxsci.com", "mailfence.com"]
 
 class Location(models.Model):
     name = models.CharField(max_length=200)
@@ -17,6 +23,8 @@ class CustomerProfile(models.Model):
     
     @classmethod
     def create_profile(cls, username, email, first_name, last_name, password, password2):
+        if not any(email.endswith(e) for e in ALLOWED_EMAILS):
+            return {'success': False, 'message': 'Disposable e-mail is not accepted!'}
         if User.objects.filter(username=username).exists():
             return {'success': False, 'message': 'Username Already Exists!'}
         elif User.objects.filter(email=email).exists():
