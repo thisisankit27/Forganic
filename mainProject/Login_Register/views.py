@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+
+from . import models
 
 # Create your views here.
 
@@ -9,14 +12,15 @@ def login(request):
         username = request.POST['CustomerUsername']
         password = request.POST['CustomerPassword']
         user = auth.authenticate(username = username, password=password)
+        response_dict = models.CustomerProfile.verify_user(user, username)
         if user is not None:
             auth.login(request, user)
-            return JsonResponse({'success': True, 'url': '/'})
+            return JsonResponse(response_dict)
         else:
             if User.objects.filter(username=username).exists():
-                return JsonResponse({'success': False, 'message': 'Wrong Password!'})
+                return JsonResponse(response_dict)
             else:
-                return JsonResponse({'success': False, 'message': 'Username Does Not Exist!'})
+                return JsonResponse(response_dict)
     else:
         return render(request, 'Login_Register/login.html')
 
@@ -29,23 +33,16 @@ def register(request):
         password = request.POST['CustomerPassword']
         password2 = request.POST['CustomerConfirmPassword']
         
-        if User.objects.filter(username=username).exists():
-            return JsonResponse({'success': False, 'message': 'Username Already Exists!'})
-        elif User.objects.filter(email=email).exists():
-            return JsonResponse({'success': False, 'message': 'Email Already Exists!'})
-        else:
-            if password == password2:
-                userObj = User.objects.create_user(username=username, email=email, first_name=first_name, last_name=last_name, password=password)
-                userObj.save()
-                return JsonResponse({'success': True, 'url': 'login'})
-            else:
-                return JsonResponse({'success': False, 'message': "Passwords don't Match!"})
+        response_dict = models.CustomerProfile.create_profile(username, email, first_name, last_name, password, password2)
+
+        return JsonResponse(response_dict)
     else:
         return render(request, 'Login_Register/Register.html')
 
+def forgotPassword(request):
+    return render(request, 'Login_Register/forgot-your-password.html')
+
+@login_required(login_url='login')
 def logout(request):
     auth.logout(request)
     return redirect('/')
-
-def forgotPassword(request):
-    return render(request, 'Login_Register/forgot-your-password.html')
