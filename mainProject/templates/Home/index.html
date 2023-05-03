@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Login</title>
+    <meta name="description" content="description">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/plugins.css' %}">
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+</head>
+
+<body class="homepage">
+    <div id="pre-loader">
+        <img src="{% static 'assets/images/loader.gif' %}" alt="Loading..." />
+    </div>
+    <div class="page-wrapper">
+        <!--Header-->
+        {% include 'Layout/Header.html' %}
+
+        <!-- Mobile Header -->
+        {% include 'Layout/MobileHeader.html' %}
+
+        <div id="page-content">
+
+            <!-- Home Slider -->
+            {% include 'Home/Components/HomeSlider.html' %}
+
+            <!-- Blog Post -->
+            {% include 'Home/Components/BlogPost.html' %}
+
+            <!-- Our Products -->
+            {% include 'Home/Components/ProductDisplay.html' %}
+
+            <!-- Featured Content -->
+            {% include 'Home/Components/FeaturedContent.html' %}
+
+            <!-- Testimonial Slider -->
+            {% include 'Home/Components/TestimonialSlider.html' %}
+        </div>
+
+        <!-- Stamp Footer -->
+        {% include 'Home/Components/StampFooter.html' %}
+
+        <!--Footer + Scroll Top-->
+        {% include 'Layout/Footer.html' %}
+
+        <!--MiniCart Drawer-->
+        {% include 'Layout/MiniCartDrawer.html' %}
+
+        <!-- Quickview Popup -->
+        {% include 'Home/Components/QuickViewPopup.html' %}
+
+        <!-- Including Jquery -->
+        <script src="{% static 'assets/js/vendor/jquery-min.js' %}"></script>
+        <script src="{% static 'assets/js/vendor/js.cookie.js' %}"></script>
+        <!-- Including Javascript -->
+        <script src="{% static 'assets/js/plugins.js' %}"></script>
+        <script src="{% static 'assets/js/main.js' %}"></script>
+    </div>
+</body>
