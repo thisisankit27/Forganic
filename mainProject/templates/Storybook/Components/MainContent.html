@@ -1,0 +1,51 @@
+{% load static %}
+<!--Main Content-->
+<div class="col-12 col-sm-12 col-md-9 col-lg-9 main-col">
+    <div class="blog--list-view blog--grid-load-more blog-list-view">
+        {% for blog in blogs.object_list %}
+        <div class="article">
+            <div class="row">
+                <!-- Article Image -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 post-img"><a class="article_featured-image"
+                        href="post/user"><img class="blur-up ls-is-cached lazyloaded"
+                            data-src="{% static 'assets/images/blog/420x213.jpg' %}"
+                            src="{% static 'assets/images/blog/420x213.jpg' %}" alt="It's all about how you wear"></a>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 post-content">
+                    <h2 class="h3"><a href="post/user">{{blog.title}}</a>
+                    </h2>
+                    <ul class="publish-detail">
+                        <li><i class="anm anm-user-al" aria-hidden="true"></i> Posted by: Lee</li>
+                        <li><i class="icon anm anm-clock-r"></i> <time
+                                datetime="2017-05-02">{{blog.date_published}}</time></li>
+                        <li><i class="icon anm anm-comments-l"></i> <a href="#"> 0 comments</a></li>
+                    </ul>
+                    <div class="rte">
+                        <p>{{blog.content}}</p>
+                    </div>
+                    <p><a href="post/user" class="btn btn-secondary btn--small">Read
+                            more</a></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if blogs.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ blogs.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current-page">
+                    Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}.
+                </span>
+
+                {% if blogs.has_next %}
+                <a href="?page={{ blogs.next_page_number }}">next</a>
+                <a href="?page={{ blogs.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</div>
+<!--End Main Content-->
