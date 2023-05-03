@@ -4,7 +4,7 @@
 
 First clone the repository from Github and switch to the new directory:
 
-    $ https://github.com/thisisankit27/Forganic.git
+    $ git clone https://github.com/thisisankit27/Forganic.git
     $ cd Forganic
     
 Activate the virtualenv for your project.
